@@ -28,9 +28,16 @@ classe `DesafioSanGiorgioApplication`
 Para gerar um build com os artefatos basta executar o seguinte comando:
 
 Unix:
-`./gradlew build`
-<br/>
-Windows: `./gradlew.bat build`
+
+```
+./gradlew build
+```
+
+Windows:
+
+```
+./gradlew.bat build
+```
 
 O artefato será gerado na raiz do projeto no diretório: `build/lib/desafio-san-giorgio-1.0.0.jar`
 
@@ -55,7 +62,7 @@ arquitetura limpa(clean architecture) que já é consolidada em projetos Java co
 segregada em vários
 micro-serviços sem grandes dificuldades, segue abaixo um esboço dessa arquitetura:
 
-![]()
+![](https://github.com/MarioJunio/desafio-san-giorgio/blob/master/images/java-clean-architecture.png)
 
 ### Rabbitmq (SQS)
 
@@ -67,7 +74,7 @@ parcial, total, excedente), sendo assim foi criado 3 filas sendo elas: parcial_q
 mensagem é redirecionada para determinada fila através do routing key(chave de roteamento) quando a mensagem é publicada
 no exchange ele verifica a routing key e decide enviar a mensagem para determinada fila.
 
-![]()
+![](https://github.com/MarioJunio/desafio-san-giorgio/blob/master/images/rabbit_exchange.png)
 
 ### H2 Database
 
@@ -81,7 +88,7 @@ http://localhost:8080/h2-console/
 E preencher as informações de acesso conforme a imagem abaixo, e para alterar as credenciais de acesso basta editar o
 arquivo <b>src/main/resources/application.properties:</b>
 
-![]()
+![](https://github.com/MarioJunio/desafio-san-giorgio/blob/master/images/h2.png)
 
 ### Flyway
 
