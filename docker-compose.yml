@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  rabbitmq:
+    image: "rabbitmq:3-management-alpine"  # RabbitMQ with management UI
+    ports:
+      - "5672:5672"   # RabbitMQ default port
+      - "15672:15672" # RabbitMQ management UI port
+    volumes:
+      - ./init/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./init/definitions.json:/etc/rabbitmq/definitions.json
+      - rabbitmq_data:/var/lib/rabbitmq  # Persist RabbitMQ data
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"  # Default user
+      RABBITMQ_DEFAULT_PASS: "guest"  # Default password
+
+  desafio-api:
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"  # Expose Spring Boot app port
+    depends_on:
+      - rabbitmq  # Depend on the RabbitMQ service
+    environment:
+      RABBITMQ_HOST: rabbitmq  # Set RabbitMQ host name for Spring Boot app
+
+volumes:
+  rabbitmq_data:
